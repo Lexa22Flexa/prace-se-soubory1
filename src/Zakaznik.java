@@ -45,7 +45,7 @@ public class Zakaznik {
         zvysPocetProdeju(pocetProdeju);
     }
 
-    private void zvysPocetProdeju(int pocetProdeju) {
+    private void zvysPocetProdeju(int pocetProdeju) throws EvidenceException {
         if (pocetProdeju < 0) {
             throw new EvidenceException("Parametr nesmí být menší jak 0!");
         } else {

@@ -5,22 +5,26 @@ import java.util.List;
 import java.util.Scanner;
 
 public class EvidenceZakazniku {
-    private List<Zakaznik> evidence = new ArrayList<>();
+    private List<Zakaznik> kolekceZakazniku = new ArrayList<>();
 
-    public List<Zakaznik> getEvidence() {
-        return evidence;
+    public List<Zakaznik> getKolekceZakazniku() {
+        return kolekceZakazniku;
     }
 
-    public void setEvidence(List<Zakaznik> evidence) {
-        this.evidence = evidence;
+    public void setKolekceZakazniku(List<Zakaznik> kolekceZakazniku) {
+        this.kolekceZakazniku = kolekceZakazniku;
     }
 
     public void pridejZakazniky(Zakaznik zakaznik) {
-        evidence.add(zakaznik);
+        kolekceZakazniku.add(zakaznik);
     }
 
-    public void odeberZakaznika() {
-        evidence.removeLast();
+    public void odeberPoslednihoZakaznika() {
+        kolekceZakazniku.removeLast();
+    }
+
+    public List<Zakaznik> getZakazniciNadLimit() {
+        return analyzaDat();
     }
 
     public void nactiZakazniky(String nazevSouboru, String oddelovac) throws EvidenceException {
@@ -54,19 +58,23 @@ public class EvidenceZakazniku {
         }
     }
 
-    public void analyzaDat() {
-        int limit = 20;
-        for (Zakaznik zakaznik : evidence) {
+    private List analyzaDat() {
+        int limit = 3;
+        List<Zakaznik> zakazniciNadLimit = new ArrayList<>(kolekceZakazniku);
+
+        for (Zakaznik zakaznik : zakazniciNadLimit) {
             if (zakaznik.getPocetProdeju() < limit) {
-                evidence.remove(zakaznik);
+                zakazniciNadLimit.remove(zakaznik);
             }
         }
+
+        return zakazniciNadLimit;
     }
 
     public int prumernyPocetProdejuUH() {
         int celkem = 0;
         int pocetUH = 0;
-        for (Zakaznik zakaznik : evidence) {
+        for (Zakaznik zakaznik : kolekceZakazniku) {
             if (zakaznik.getMesto().equals("Uherské Hradiště")) {
                 celkem += zakaznik.getPocetProdeju();
                 pocetUH += 1;
@@ -80,7 +88,14 @@ public class EvidenceZakazniku {
         return prumerUH;
     }
 
-
+    public void vypisVsechnaData() {
+        for (Zakaznik zakaznik : kolekceZakazniku) {
+            System.out.println(zakaznik.getJmeno());
+            System.out.println(zakaznik.getMesto());
+            System.out.println(zakaznik.getDatumNarozeni());
+            System.out.println(zakaznik.getPocetProdeju());
+        }
+    }
 
 
 }
