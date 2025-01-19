@@ -50,9 +50,11 @@ public class EvidenceZakazniku {
         return new Zakaznik(jmeno, datumNarozeni, mesto, pocetProdeju);
     }
 
-    private void zapisDoKolekce(String nazevSouboru, String oddelovac) throws EvidenceException {
+    public void zapisDoKolekce(String nazevSouboru, String oddelovac) throws EvidenceException {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter("resources/" + nazevSouboru)))) {
-            //DODĚLAT
+            for (Zakaznik zakaznik : kolekceZakazniku) {
+                writer.println(zakaznik.getJmeno() + oddelovac + zakaznik.getDatumNarozeni() + oddelovac + zakaznik.getMesto() + oddelovac + zakaznik.getPocetProdeju() + oddelovac);
+            }
         } catch (IOException e) {
             throw new EvidenceException("DOPSAT");
         }
@@ -96,6 +98,5 @@ public class EvidenceZakazniku {
             System.out.println(zakaznik.getPocetProdeju());
         }
     }
-
 
 }

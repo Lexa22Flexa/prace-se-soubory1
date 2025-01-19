@@ -9,6 +9,7 @@ public class Main {
         evidenceZakazniku.nactiZakazniky("zakaznici.txt", ":");
 
         evidenceZakazniku.vypisVsechnaData();
+        evidenceZakazniku.zapisDoKolekce("kolekce.txt", ":");
 
         System.out.println(evidenceZakazniku.prumernyPocetProdejuUH());
 
