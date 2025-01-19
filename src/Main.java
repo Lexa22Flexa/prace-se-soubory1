@@ -16,7 +16,7 @@ public class Main {
 
             System.out.println(evidenceZakazniku.getZakazniciNadLimit().size());
         } catch (EvidenceException e) {
-            throw new RuntimeException(e);
+            System.err.println(e);
         }
     }
 }
