@@ -38,7 +38,7 @@ public class EvidenceZakazniku {
         }
     }
 
-    private Zakaznik parseZakaznik(String radek, String oddelovac) {
+    private Zakaznik parseZakaznik(String radek, String oddelovac) throws EvidenceException {
         String [] polozky = radek.split(oddelovac);
         if (polozky.length != 4) {
             throw new EvidenceException("Chybný počet položek!");
@@ -56,7 +56,7 @@ public class EvidenceZakazniku {
                 writer.println(zakaznik.getJmeno() + oddelovac + zakaznik.getDatumNarozeni() + oddelovac + zakaznik.getMesto() + oddelovac + zakaznik.getPocetProdeju() + oddelovac);
             }
         } catch (IOException e) {
-            throw new EvidenceException("DOPSAT");
+            throw new EvidenceException("Nastala chyba!");
         }
     }
 

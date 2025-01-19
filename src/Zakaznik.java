@@ -42,7 +42,11 @@ public class Zakaznik {
     }
 
     public void setPocetProdeju(int pocetProdeju) {
-        zvysPocetProdeju(pocetProdeju);
+        try {
+            zvysPocetProdeju(pocetProdeju);
+        } catch (EvidenceException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void zvysPocetProdeju(int pocetProdeju) throws EvidenceException {
